@@ -1,6 +1,9 @@
 const express = require('express');
-const routes = require('./routes');
-// import sequelize connection
+require('dotenv').config();
+const sequelize = require('./Develop/config/connection');
+
+const routes = require('./Develop/routes');
+
 
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -14,3 +17,4 @@ app.use(routes);
 app.listen(PORT, () => {
   console.log(`App listening on port ${PORT}!`);
 });
+
