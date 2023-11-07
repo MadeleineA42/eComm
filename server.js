@@ -1,8 +1,9 @@
-const express = require('express');
 require('dotenv').config();
-const sequelize = require('./Develop/config/connection');
 
+const express = require('express');
 const routes = require('./Develop/routes');
+//Import sequelize connection
+const sequelize = require('./Develop/config/connection');
 
 
 const app = express();
