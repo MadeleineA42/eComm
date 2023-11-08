@@ -6,7 +6,7 @@ const { Tag, Product, ProductTag } = require('../../models');
 // be sure to include its associated Product data
 router.get('/', async (req, res) => {
   try {
-    const tags = await Tags.findAll({ include: [{ model: Product }] });
+    const tags = await Tag.findAll({ include: [{ model: Product }] });
     res.json(tags);
   } catch (err) {
     console.error(err);
@@ -18,7 +18,7 @@ router.get('/', async (req, res) => {
 // be sure to include its associated Product data
 router.get('/:id', async (req, res) => {
   try {
-    const tags = await Tags.findByPk(req.params.id, { include: [{ model: Product }] });
+    const tags = await Tag.findByPk(req.params.id, { include: [{ model: Product }] });
     if (!tags) {
       res.status(404).json({ message: 'Tags not found' });
       return;
@@ -32,7 +32,7 @@ router.get('/:id', async (req, res) => {
 // create a new tag
 router.post('/', async (req, res) => {
   try {
-    const tags = await Tags.create(req.body);
+    const tags = await Tag.create(req.body);
     res.status(200).json(tags); //200 means success
   } catch (err) {
     res.status(400).json(err); //400 code means server couldn't understand request
@@ -42,7 +42,7 @@ router.post('/', async (req, res) => {
 // update a tag's name by its `id` value
 router.put('/:id', async (req, res) => {
   try {
-    const tags = await Tags.update(req.body, {
+    const tags = await Tag.update(req.body, {
       where: {
         id: req.params.id,
       },
@@ -60,7 +60,7 @@ router.put('/:id', async (req, res) => {
 // delete on tag by its `id` value
 router.delete('/:id', async (req, res) => {
   try {
-   const deleteTags = await Tags.destroy({ where: { id: req.params.id } });
+   const deleteTags = await Tag.destroy({ where: { id: req.params.id } });
    if (!deleteTags)  {
      res.status(404).json({ message: 'Tags not found' });
      return;
